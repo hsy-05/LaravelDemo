@@ -25,10 +25,32 @@ Route::get('/hello-world', function () {
 }); 
 
 
-Route::get('/about_us', function () {
+Route::get('    ', function () {
 
     return view('about_us', ['name' => 'Laravel 6.0 範例']);
 
 }); 
 
 Route::get('/inspire', 'App\Http\Controllers\InspiringController@inspire'); 
+
+Route::get('/test', function(){
+
+    return App\Models\Post::all();
+
+}); 
+
+Route::get('/edit', function(){
+    $post = App\Models\Post::find(1);
+    $post->content = 'Laravel demo';
+    $post->save();
+    return $post;
+
+}); 
+
+Route::get('/add', function(){
+
+    $post = new App\Models\Post;
+     $post->content = 'ABCDEF';
+     $post->save();
+     return $post; 
+ }); 
