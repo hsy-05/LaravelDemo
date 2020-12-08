@@ -13,4 +13,23 @@ class Post extends Model
         'content'
 
     ];
+
+ 
+public function subject()
+
+{
+
+    return $this->belongsTo(Subject::class);
+
 }
+
+
+public function user()
+
+{
+
+    return $this->belongsTo(Subject::class);
+
+}
+} 
+
