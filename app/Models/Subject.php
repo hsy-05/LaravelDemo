@@ -20,5 +20,13 @@ public function posts()
 
     return $this->hasMany(Post::class);
 
-}  
+}
+
+public function subject()
+
+{
+
+    return $this->belongsTo(Subject::class);
+
+}
 }
