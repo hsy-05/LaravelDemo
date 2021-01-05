@@ -11,7 +11,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register()  //用來寫 bind 的地方。
     {
         //
     }
@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot()  //當 register 結束以後會執行的方法。
     {
         //
     }

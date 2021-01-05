@@ -26,8 +26,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        if(is_null(Auth::user())){
-            return redirect(route('login'));
+        if(is_null(Auth::user())){  //用 Auth::user() 取得用戶資料
+            return redirect (route('login'));
         } else {
             return view('posts.create');
         }

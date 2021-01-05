@@ -15,10 +15,12 @@ use App\Models\Subject;      //////////////////
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'App\Http\Controllers\HomeController@index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+// Route::get('/admin/login', function (){
+//     return view('auth.login');
+// });
 
 Route::get('/hello-world', function () {
 
@@ -96,7 +98,7 @@ Route::get('/add2', function(){
 });
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index2'])->name('home');
 
 Route::get('/check', function(){
 

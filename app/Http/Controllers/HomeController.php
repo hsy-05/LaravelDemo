@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Home;
+use App\Models\Website;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+
+    public function index()
     {
-        $this->middleware('auth');
+        $home = Home::all();
+        $website = Website::find(1);
+        return view('welcome', compact('home', 'website'));
     }
 
     /**
@@ -21,7 +22,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index2()
     {
         return view('home');
     }
