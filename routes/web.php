@@ -15,12 +15,18 @@ use App\Models\Subject;      //////////////////
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'App\Http\Controllers\HomeController@index');
+Route::get('/', 'App\Http\Controllers\HomeController@index')->name('firstHome');
+
+Route::get('/w_co', 'App\Http\Controllers\HomeController@index4')->name('wo_co');
 
 
-// Route::get('/admin/login', function (){
-//     return view('auth.login');
-// });
+Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index3'])->name('new');
+// Route::get('/admin', 'App\Http\Controllers\PostController@index')->name('new');
+
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function() {
+    Route::resource('posts', 'App\Http\Controllers\PostController');   ////////要打全名
+});
+
 
 Route::get('/hello-world', function () {
 
@@ -112,4 +118,4 @@ Route::get('/user', function(){
 
 });
 
-Route::resource('posts', 'App\Http\Controllers\PostController');   ////////要打全名
+

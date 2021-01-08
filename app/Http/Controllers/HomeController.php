@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Home;
+use App\Models\Product;
 use App\Models\Website;
 
 class HomeController extends Controller
@@ -13,8 +14,7 @@ class HomeController extends Controller
     public function index()
     {
         $home = Home::all();
-        $website = Website::find(1);
-        return view('welcome', compact('home', 'website'));
+        return view('welcome', compact('home'));
     }
 
     /**
@@ -25,5 +25,17 @@ class HomeController extends Controller
     public function index2()
     {
         return view('home');
+    }
+
+    public function index3()
+    {
+        $this->authorize('admin');
+        return view('admin.layouts.master', ['Home' => home::cursor()]);
+    }
+
+    public function index4()
+    {
+        $products = Product::all();
+        return view('frontend.women.w_co', compact('products'));
     }
 }

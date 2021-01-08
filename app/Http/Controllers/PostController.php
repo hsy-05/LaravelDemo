@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Gate; ////////////
+
 use Auth;         ///////
+use App\Models\Home;
 
 class PostController extends Controller
 {
@@ -16,7 +19,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index', ['posts' => Post::cursor()]);
+        $this->authorize('admin');
+        $home = Home::orderBy('id')->get();
+        return view('admin.posts.index', compact('home'));
     }
 
     /**
@@ -26,11 +31,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        if(is_null(Auth::user())){  //用 Auth::user() 取得用戶資料
-            return redirect (route('login'));
-        } else {
-            return view('posts.create');
-        }
+        $this->authorize('admin');
+            return view('admin.posts.create');
+
     }
 
     /**
@@ -42,31 +45,34 @@ class PostController extends Controller
     public function store(Request $request)
 
 {
+    $this->authorize('admin');
 
-    $post = new Post;
+       // 如果路徑不存在，就自動建立
+       if (!file_exists('uploads/home')) {
+        mkdir('uploads/home', 0755, true);
+    }
 
-    $post->content = $request->input('content');
+    $home = new Home;
 
-    $post->subject_id = 0;
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $path = public_path() . '\uploads\home\\';
+        $fileName = time() . '.' . $file->getClientOriginalExtension();
+        $file->move($path, $fileName);
+    }
+    else {
+        $fileName = 'default.jpg';
+    }
 
-    $post->user_id = 1;
 
-    $post->save();
+    $home->content_1 = $request->input('content_1');
+    $home->content_2 = $request->input('content_2');
+    $home->image = $fileName;
+    $home->save();
 
-    return redirect(route('posts.index'));
+    return redirect(route('admin.posts.index'));
 
 }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Post $post)
-    {
-        return view('posts.show', ['post' => $post]);
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -74,9 +80,11 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        return view('posts.edit', ['post' => $post]);
+        $this->authorize('admin');
+        $home = Home::find($id);
+        return view('admin.posts.edit', compact('home'));
     }
 
     /**
@@ -86,13 +94,34 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        $post->content = $request->input('content');
+        $this->authorize('admin');
+       // 如果路徑不存在，就自動建立
+       if (!file_exists('uploads/home')) {
+        mkdir('uploads/home', 0755, true);
+    }
 
-        $post->save();
+    $home = Home::find($id);
 
-        return redirect(route('posts.show', ['post' => $post]));
+    if ($request->hasFile('image')) {
+        // 先刪除原本的圖片
+        if ($home->image != 'default.jpg')
+            @unlink('uploads/home/' . $home->image);
+        $file = $request->file('image');
+        $path = public_path() . '\uploads\home\\';
+        $fileName = time() . '.' . $file->getClientOriginalExtension();
+        $file->move($path, $fileName);
+
+        $home->image = $fileName;
+    }
+
+    $home->content_1 = $request->input('content_1');
+    $home->content_2 = $request->input('content_2');
+
+    $home->save();
+
+    return redirect()->route('admin.posts.index');
     }
 
     /**
@@ -101,10 +130,13 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        $post->delete();
-
-    return redirect(route('posts.index'));
+        $this->authorize('admin');
+        $home = Home::find($id);
+        if ($home->image != 'default.jpg')
+            @unlink('uploads/product/' . $home->image);
+        $home->delete();
+        return redirect()->route('admin.posts.index');
     }
 }

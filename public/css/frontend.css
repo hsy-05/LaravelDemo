@@ -1,8 +1,8 @@
 body {
     font-family: 'Nunito';
 }
-.fm{
-    font-family: fantasy;
+.fw{
+    font-weight:bold;
 }
 
 .full-height {
@@ -66,12 +66,3 @@ body {
   font-weight:bold;
 
 }
-
-
-.shop_foot{
-    background-color:rgb(121, 119, 122);
-    color: #fff;
-    padding: 30px;
-    line-height: 1.8;
-    margin: 15px 0px;
-   }

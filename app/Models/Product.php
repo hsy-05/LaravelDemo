@@ -2,21 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use Illuminate\Database\Eloquent\SoftDeletes;    ///////
-
-class Post extends Model
+class Product extends Model
 {
-    use SoftDeletes;        ///////////////
-    use HasFactory;
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'home';
+    protected $table = 'products';
 
     /**
      * Indicates if the model should be timestamped.
@@ -25,5 +20,3 @@ class Post extends Model
      */
     public $timestamps = false;
 }
-
-
