@@ -1,13 +1,3 @@
-{{--
-@foreach($posts as $post)
-
-    {{ $post->content }}
-
-    <hr />
-
-@endforeach --}}
-
-
 @extends('admin.layouts.master')
 
 @section('content')
@@ -23,8 +13,8 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">商品名稱</th>
-                        <th scope="col">商品副標題</th>
+                        <th scope="col">消息主題</th>
+                        <th scope="col">消息內容</th>
                         <th scope="col">圖片</th>
                         <th scope="col">操作</th>
                     </tr>

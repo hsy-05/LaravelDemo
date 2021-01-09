@@ -34,19 +34,20 @@
     </style>
 </head>
 
-<body>
+<body style="margin-top:60px">
     <div class="container">
         <div class="content">
 
         @include('welcome_nav')
 
-
-
-        </div>
         <div>
-          @include('footer')
-        </div>
 
+          @include('frontend.women.w_products')
+
+
+        </div>
+    </div>
+        @include('footer')
     </div>
 
     </body>

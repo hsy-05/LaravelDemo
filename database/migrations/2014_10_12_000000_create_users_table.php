@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('role')->default(User::ROLE_USER); // 加入角色欄位
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('address');  //
+            $table->integer('cellphone');  //
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

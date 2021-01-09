@@ -1,4 +1,4 @@
- <!--活動內容-->
+ <!--消息內容-->
  <div class="row">
     @foreach($home as $h)
     <div class="col-md-4" style="text-align: center;">
@@ -8,7 +8,7 @@
           </div>
           <div class="caption">
             <div style="height: 60px;">
-              <h3><a href="#" class="goodsTitle">{!! $h->content_1 !!}</a></h3>
+              <h3><a href="#">{!! $h->content_1 !!}</a></h3>
               <span>{!! $h->content_2 !!}</span>
             </div>
           </div>

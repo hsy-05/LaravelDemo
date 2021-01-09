@@ -4,7 +4,7 @@
               <ul class="nav navbar-nav"  style="font-weight:bold;font-size: 20px; width:100%">
                 <li class="active"><a href="{{ route('new') }}" style="font-size: 30px;margin-right: 36px;">歡迎進入管理頁面</a></li>
                 <li><a href="{{ route('admin.posts.index') }}">消息</a></li>
-                <li><a href="#">商品</a></li>
+                <li><a href="{{ route('admin.products.index') }}">商品</a></li>
                 <ul class="nav navbar-nav navbar-right" style="margin-right: 12px">
                   @if (Route::has('login'))
                       <li>

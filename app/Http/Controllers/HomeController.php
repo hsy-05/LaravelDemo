@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Home;
-use App\Models\Product;
-use App\Models\Website;
+use App\Models\Products;
 
 class HomeController extends Controller
 {
@@ -35,7 +34,7 @@ class HomeController extends Controller
 
     public function index4()
     {
-        $products = Product::all();
+        $products = Products::all();
         return view('frontend.women.w_co', compact('products'));
     }
 }

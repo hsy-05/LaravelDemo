@@ -1,9 +1,11 @@
+<div >
 <nav class="navbar navbar-fixed-top " style="background-color: white">
     <div class="container-fluid">
       <ul class="nav navbar-nav"  style="font-weight:bold;font-size: 20px; width:100%">
         <li class="active"><a href="{{ route('firstHome') }}" style="font-size: 30px;margin-right: 36px;">服飾</a></li>
-        <li><a href="#">SALE</a></li>
-        <li><a href="#">MEN</a></li>
+        {{-- <li><a href="#">SALE</a></li>
+        <li><a href="#">MEN</a></li> --}}
+        <li><a href="{{ route('firstHome') }}">NEWS</a></li>
         <li><a href="{{ route('wo_co') }}">WOMEN</a></li>
         <ul class="nav navbar-nav navbar-right" style="margin-right: 12px">
           @if (Route::has('login'))
@@ -49,3 +51,4 @@
 
     </div>
   </nav>
+</div>

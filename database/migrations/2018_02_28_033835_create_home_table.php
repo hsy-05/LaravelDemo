@@ -13,6 +13,7 @@ class CreateHomeTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('home');
         Schema::create('home', function (Blueprint $table) {
             $table->increments('id');
             $table->text('content_1');

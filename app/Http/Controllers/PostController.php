@@ -135,7 +135,7 @@ class PostController extends Controller
         $this->authorize('admin');
         $home = Home::find($id);
         if ($home->image != 'default.jpg')
-            @unlink('uploads/product/' . $home->image);
+            @unlink('uploads/home/' . $home->image);
         $home->delete();
         return redirect()->route('admin.posts.index');
     }

@@ -19,12 +19,12 @@ Route::get('/', 'App\Http\Controllers\HomeController@index')->name('firstHome');
 
 Route::get('/w_co', 'App\Http\Controllers\HomeController@index4')->name('wo_co');
 
-
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index3'])->name('new');
 // Route::get('/admin', 'App\Http\Controllers\PostController@index')->name('new');
 
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function() {
     Route::resource('posts', 'App\Http\Controllers\PostController');   ////////要打全名
+    Route::resource('products', 'App\Http\Controllers\ProductsController');
 });
 
 

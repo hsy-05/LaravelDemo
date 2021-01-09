@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Product;
+use App\Models\Products; //
 
-class ProductController extends Controller
+class ProductsController extends Controller
 {
-    /**
+       /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $products = Product::orderBy('id')->get();
-        return view('backend.product.index', compact('products'));
+        $this->authorize('admin');
+        $products = Products::orderBy('id')->get();
+        return view('admin.products.index', compact('products'));
     }
 
     /**
@@ -26,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('backend.product.create');
+        return view('admin.products.create');
     }
 
     /**
@@ -38,15 +38,15 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         // 如果路徑不存在，就自動建立
-        if (!file_exists('uploads/product')) {
-            mkdir('uploads/product', 0755, true);
+        if (!file_exists('uploads/products')) {
+            mkdir('uploads/products', 0755, true);
         }
-        
-        $product = new Product;
+
+        $products = new Products;
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $path = public_path() . '\uploads\product\\';
+            $path = public_path() . '\uploads\products\\';
             $fileName = time() . '.' . $file->getClientOriginalExtension();
             $file->move($path, $fileName);
         }
@@ -54,16 +54,15 @@ class ProductController extends Controller
             $fileName = 'default.jpg';
         }
 
-        $product->title = $request->input('title');
-        $product->subtitle = $request->input('subtitle');
-        $product->image = $fileName;
-        $product->description = $request->input('description');
+        $products->title = $request->input('title');
+        $products->price = $request->input('price');
+        $products->image = $fileName;
+        $products->description = $request->input('description');
 
-        $product->save();
+        $products->save();
 
-        return redirect()->route('admin.product.index');
+        return redirect()->route('admin.products.index');
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -72,8 +71,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::find($id);
-        return view('backend.product.edit', compact('product'));
+        $products = Products::find($id);
+        return view('admin.products.edit', compact('products'));
     }
 
     /**
@@ -86,31 +85,31 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         // 如果路徑不存在，就自動建立
-        if (!file_exists('uploads/product')) {
-            mkdir('uploads/product', 0755, true);
+        if (!file_exists('uploads/products')) {
+            mkdir('uploads/products', 0755, true);
         }
-        
-        $product = Product::find($id);
+
+        $products = Products::find($id);
 
         if ($request->hasFile('image')) {
             // 先刪除原本的圖片
-            if ($product->image != 'default.jpg')
-                @unlink('uploads/product/' . $product->image);
+            if ($products->image != 'default.jpg')
+                @unlink('uploads/products/' . $products->image);
             $file = $request->file('image');
-            $path = public_path() . '\uploads\product\\';
+            $path = public_path() . '\uploads\products\\';
             $fileName = time() . '.' . $file->getClientOriginalExtension();
             $file->move($path, $fileName);
 
-            $product->image = $fileName;
+            $products->image = $fileName;
         }
 
-        $product->title = $request->input('title');
-        $product->subtitle = $request->input('subtitle');
-        $product->description = $request->input('description');
+        $products->title = $request->input('title');
+        $products->price = $request->input('price');
+        $products->description = $request->input('description');
 
-        $product->save();
+        $products->save();
 
-        return redirect()->route('admin.product.index');
+        return redirect()->route('admin.products.index');
     }
 
     /**
@@ -121,10 +120,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
-        if ($product->image != 'default.jpg')
-            @unlink('uploads/product/' . $product->image);
-        $product->delete();
-        return redirect()->route('admin.product.index');
+        $products = Products::find($id);
+        if ($products->image != 'default.jpg')
+            @unlink('uploads/products/' . $products->image);
+        $products->delete();
+        return redirect()->route('admin.products.index');
     }
 }
