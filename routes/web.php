@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InspiringController;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Subject;      //////////////////
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,55 +28,12 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function() {
     Route::resource('products', 'App\Http\Controllers\ProductsController');
 });
 
-
-Route::get('/hello-world', function () {
-
-    return view('Hello_world');
-
-});
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index2'])->name('home');
 
 
-Route::get('/about_us', function () {
-
-    return view('about_us', ['name' => 'Laravel 6.0 範例']);
-
-});
+Route::get('/cart', 'CartController@index')->name('cart.index');
 
 Route::get('/inspire', 'App\Http\Controllers\InspiringController@inspire');
-
-Route::get('/test', function(){
-
-    return App\Models\Post::all();
-
-});
-
-Route::get('/edit', function(){
-    $post = App\Models\Post::find(1);
-    $post->content = 'Laravel demo';
-    $post->save();
-    return $post;
-
-});
-
-Route::get('/add1', function(){
-
-    $post = new App\Models\Post;
-     $post->content = 'ABCDEF';
-     $post->subject_id = 1;
-     $post->user_id = 1;      ///////////
-     $post->save();
-     return $post;
- });
-
-Route::get('/add2', function(){
-
-    $post = new App\Models\Post;
-     $post->content = 'SSSSSS';
-     $post->subject_id = 2;
-     $post->user_id = 2;   //////////
-     $post->save();
-     return $post;
- });
 
  Route::get('/sub1', function(){
 
@@ -103,8 +61,6 @@ Route::get('/add2', function(){
 
 });
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index2'])->name('home');
 
 Route::get('/check', function(){
 

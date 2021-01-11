@@ -1,8 +1,8 @@
 <div >
-<nav class="navbar navbar-fixed-top " style="background-color: white">
+<nav class="navbar navbar-fixed-top " style="background-color: white;">
     <div class="container-fluid">
       <ul class="nav navbar-nav"  style="font-weight:bold;font-size: 20px; width:100%">
-        <li class="active"><a href="{{ route('firstHome') }}" style="font-size: 30px;margin-right: 36px;">服飾</a></li>
+        <li class="active"><a href="{{ route('firstHome') }}" style="font-size: 30px;margin-right: 36px;">Co.Store</a></li>
         {{-- <li><a href="#">SALE</a></li>
         <li><a href="#">MEN</a></li> --}}
         <li><a href="{{ route('firstHome') }}">NEWS</a></li>
@@ -34,6 +34,10 @@
                               </a>
                           </li>
                           @endcan
+                          <li><a class="dropdown-item" href="{{ route('home') }}">
+                            會員資料
+                            </a>
+                        </li>
 
                       </ul>
                   </li>
