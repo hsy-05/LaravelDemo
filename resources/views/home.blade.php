@@ -31,20 +31,9 @@
 
                     </thead>
                 </table>
-
-
-
-                {{-- <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div> --}}
+            <div  style="text-align: center">
+                <a href="{{ route('firstHome') }}" class="btn btn-primary" role="button" >確認</a>
+            </div>
             </div>
         </div>
     </div>
