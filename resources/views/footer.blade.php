@@ -1,4 +1,4 @@
-<!-- Footer Start -->
+<!-- Footer -->
 <footer class="footer text-faded text-center py-5 shop_foot" style="margin-top:60px">
     <div class="container">
         <h3>聯絡我們</h3>
@@ -9,6 +9,3 @@
         <div>版權所有 copyright © 2020. All Rights Reserved. </div>
     </div>
 </footer>
-
-
-<!-- Footer End -->

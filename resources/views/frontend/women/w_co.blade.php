@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-  <title>服飾</title>
+  <title>Co.Store</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <link rel="shortcut icon" href="{{ asset('images/favicon.jpg') }}">
+  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
@@ -15,7 +16,7 @@
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-  {{-- <link href="{{ asset('css/frontend.css') }}" rel="stylesheet"> --}}
+  <link href="{{ asset('css/frontend.css') }}" rel="stylesheet">
 
   <!--[if lt IE 9]>
       <script src="bootstrap/js/html5shiv.min.js"></script>

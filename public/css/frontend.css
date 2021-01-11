@@ -1,6 +1,4 @@
-body {
-    font-family: 'Nunito';
-}
+
 .fw{
     font-weight:bold;
 }
@@ -60,6 +58,7 @@ body {
 
 .imageHov:hover{
   transform: scale(1.3);
+  opacity: 0.6;
 }
 
 .goodsTitle:hover{   /*  商品名稱  */
